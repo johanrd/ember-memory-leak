@@ -50,14 +50,8 @@ interface ChartJsSignature {
     options?: ChartOptions
     isLoading?: boolean
     title?: string
-    onMouseLeave?: () => void
   }
 }
-
-function noop() {
-  return function () {}
-}
-
 
 export default class ChartJsComponent extends Component<ChartJsSignature> {
   @tracked chart: Chart | undefined = undefined
@@ -92,8 +86,7 @@ export default class ChartJsComponent extends Component<ChartJsSignature> {
       ...attributes
       class='chartjs-render-monitor'
       {{didInsert this.setupChart}}
-      {{didUpdate this.updateChart @data}}
-      {{on 'mouseleave' (or @onMouseLeave (noop))}}
+      {{didUpdate this.updateChart @data @isLoading}}
     />
   </template>
 }
