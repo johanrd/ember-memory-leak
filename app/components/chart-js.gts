@@ -1,39 +1,20 @@
 import Component from '@glimmer/component'
-import { action } from '@ember/object'
 import { modifier } from 'ember-modifier'
 
 import {
   Chart,
   BarController,
-  LineController,
-  ScatterController,
-  LineElement,
-  PointElement,
   BarElement,
-  TimeScale,
   LinearScale,
-  TimeSeriesScale,
   CategoryScale,
-  ChartOptions,
-  ChartType,
   ChartData,
-  Tooltip,
-  Filler,
 } from 'chart.js'
 
 Chart.register(
   BarController,
-  LineController,
-  ScatterController,
-  LineElement,
-  PointElement,
   BarElement,
-  TimeScale,
   LinearScale,
   CategoryScale,
-  Tooltip,
-  Filler,
-  TimeSeriesScale,
 )
 
 interface ChartJsSignature {
