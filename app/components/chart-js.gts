@@ -34,13 +34,8 @@ Chart.register(
   TimeSeriesScale,
 )
 
-// import 'chartjs-adapter-dayjs-3'
-
-import { on } from '@ember/modifier'
-import { or } from 'ember-truth-helpers'
 import didInsert from '@ember/render-modifiers/modifiers/did-insert'
 import didUpdate from '@ember/render-modifiers/modifiers/did-update'
-import { tracked } from '@glimmer/tracking'
 
 interface ChartJsSignature {
   Element: HTMLCanvasElement
@@ -54,7 +49,7 @@ interface ChartJsSignature {
 }
 
 export default class ChartJsComponent extends Component<ChartJsSignature> {
-  @tracked chart: Chart | undefined = undefined
+  chart: Chart | undefined = undefined
 
   @action
   setupChart(element: HTMLCanvasElement) {
@@ -81,7 +76,6 @@ export default class ChartJsComponent extends Component<ChartJsSignature> {
   }
 
   <template>
-    {{@title}}
     <canvas
       ...attributes
       class='chartjs-render-monitor'
