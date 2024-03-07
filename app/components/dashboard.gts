@@ -1,7 +1,5 @@
 import Component from "@glimmer/component";
 import ChartJs from 'ember-memory-leak/components/chart-js'
-import { or } from 'ember-truth-helpers';
-import { t } from 'ember-intl';
 
 type Character = {
     name: string;
@@ -43,16 +41,14 @@ function convertToChartData(data?: SWAPIData): { labels: string[]; datasets: any
 export default class Dashboard extends Component {
   <template>
     <ul>
-      <li>People: {{or @peopleList.results.length 'loading…'}}</li>
-      <li>vehicles: {{or @vehicleList.results.length 'loading…'}}</li>
+      {{!-- <li>People: {{ @peopleList.results.length 'loading…'}}</li>
+      <li>vehicles: {{or @vehicleList.results.length 'loading…'}}</li> --}}
     </ul>
 
     <ChartJs
       style="width: 100%; height: 300px; margin-top: 40px;"
       @type="bar"
       @data={{convertToChartData @peopleList}}
-      @isLoading={{@isLoading}}
-      @title={{t 'Character heights'}}
     />
   </template>
 }

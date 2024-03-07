@@ -2,7 +2,7 @@ import RouteTemplate from "ember-route-template";
 import PeopleList from "ember-memory-leak/components/people-list";
 import VehicleList from "ember-memory-leak/components/vehicle-list";
 import Dashboard from "ember-memory-leak/components/dashboard";
-import { or } from "ember-truth-helpers";
+import or from "ember-memory-leak/helpers/or";
 
 export default RouteTemplate(<template>
 
