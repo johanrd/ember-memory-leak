@@ -42,7 +42,6 @@ function convertToChartData(data?: SWAPIData): { labels: string[]; datasets: any
 
 export default class Dashboard extends Component {
   <template>
-    {{t 'Leaky dashboard'}}
     <ul>
       <li>People: {{or @peopleList.results.length 'loading…'}}</li>
       <li>vehicles: {{or @vehicleList.results.length 'loading…'}}</li>
