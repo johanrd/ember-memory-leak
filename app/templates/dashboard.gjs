@@ -4,14 +4,61 @@ import VehicleList from "ember-memory-leak/components/vehicle-list";
 import Dashboard from "ember-memory-leak/components/dashboard";
 import { or } from "ember-truth-helpers";
 
+import ChartJs from 'ember-memory-leak/components/chart-js'
+import t from 'ember-intl/helpers/t';
+import type { ChartData } from 'chart.js';
+
+type Character = {
+  name: string;
+};
+
+type SWAPIData = {
+  count: number;
+  results: Character[];
+};
+
+// Convert swapi dataset to Chart.js format
+function convertSwapiResponseToChartJsData(data?: SWAPIData): ChartData<'bar'> {
+  if (!data) return { labels: [], datasets: [] };
+
+  const backgroundColors = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'];
+  
+  const labels = data?.results.map(character => character.name);
+  const dataset = data?.results.map(character => {
+    return {
+      x: character.name,
+      y: character.name.length
+    };
+  });
+
+  return {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Character heights',
+        data: dataset.map(d => d.y),
+        backgroundColor: dataset.map((_, index) => backgroundColors[index % backgroundColors.length])
+      }
+    ]
+  };
+}
+
 export default RouteTemplate(<template>
 
   <PeopleList as |peopleList peopleRequest|>
     <VehicleList as |vehicleList vehicleRequest|>
-      <Dashboard @peopleList={{peopleList}} @vehicleList={{vehicleList}} @isLoading={{or peopleRequest.isLoading vehicleRequest.isLoading}}/>
+        <ul>
+        <li>People: {{#if (or peopleRequest.isLoading vehicleRequest.isLoading) }}loading…{{else}} {{@peopleList.results.length}}{{/if}}</li>
+      </ul>
+
+      <ChartJs
+        style="width: 100%; height: 300px; margin-top: 40px;"
+        @type="bar"
+        @data={{convertSwapiResponseToChartJsData peopleList}}
+        @isLoading={{or peopleRequest.isLoading vehicleRequest.isLoading}}
+        @title={{t 'Character heights'}}
+      />
     </VehicleList>
   </PeopleList>
-
-  {{outlet}}
 
 </template>);
