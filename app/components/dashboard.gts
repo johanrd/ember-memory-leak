@@ -42,9 +42,9 @@ function convertToChartData(data?: SWAPIData): { labels: string[]; datasets: any
 
 export default class Dashboard extends Component {
   <template>
+
     <ul>
-      <li>People: {{or @peopleList.results.length 'loading…'}}</li>
-      <li>vehicles: {{or @vehicleList.results.length 'loading…'}}</li>
+      <li>People: {{#if @isLoading }}loading…{{else}} {{@peopleList.results.length}}{{/if}}</li>
     </ul>
 
     <ChartJs
@@ -53,6 +53,6 @@ export default class Dashboard extends Component {
       @data={{convertToChartData @peopleList}}
       @isLoading={{@isLoading}}
       @title={{t 'Character heights'}}
-    />
+    /> 
   </template>
 }
