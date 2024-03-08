@@ -9,7 +9,7 @@ export default RouteTemplate(<template>
     }
   </style>
 
-  <h1>Ember Memory Leak</h1>
+  <h1>Memory Leak regression with ember-intl >= 6.3.0</h1>
 
   <nav style="font-family: monospace; display: flex; gap: 12px;">
     <LinkTo @route="dashboard" @activeClass="font-bold">Leaky dashboard</LinkTo>
