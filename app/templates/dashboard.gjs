@@ -1,8 +1,6 @@
 import RouteTemplate from "ember-route-template";
 import PeopleList from "ember-memory-leak/components/people-list";
-import VehicleList from "ember-memory-leak/components/vehicle-list";
 import Dashboard from "ember-memory-leak/components/dashboard";
-import { or } from "ember-truth-helpers";
 
 import ChartJs from 'ember-memory-leak/components/chart-js'
 import t from 'ember-intl/helpers/t';
@@ -46,19 +44,17 @@ function convertSwapiResponseToChartJsData(data?: SWAPIData): ChartData<'bar'> {
 export default RouteTemplate(<template>
 
   <PeopleList as |peopleList peopleRequest|>
-    <VehicleList as |vehicleList vehicleRequest|>
-      <ul>
-        <li>People: {{#if (or peopleRequest.isLoading vehicleRequest.isLoading) }}loading data…{{else}} {{peopleList.results.length}}{{/if}}</li>
-      </ul>
+    <ul>
+      <li>People: {{#if peopleRequest.isLoading}}loading data…{{else}} {{peopleList.results.length}}{{/if}}</li>
+    </ul>
 
-      <ChartJs
-        style="width: 100%; height: 300px; margin-top: 40px;"
-        @type="bar"
-        @data={{convertSwapiResponseToChartJsData peopleList}}
-        @isLoading={{or peopleRequest.isLoading vehicleRequest.isLoading}}
-        @title={{t 'Character heights'}}
-      />
-    </VehicleList>
+    <ChartJs
+      style="width: 100%; height: 300px; margin-top: 40px;"
+      @type="bar"
+      @data={{convertSwapiResponseToChartJsData peopleList}}
+      @isLoading={{peopleRequest.isLoading}}
+      @title={{t 'Character heights'}}
+    />
   </PeopleList>
 
 </template>);
