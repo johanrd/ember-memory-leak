@@ -47,8 +47,8 @@ export default RouteTemplate(<template>
 
   <PeopleList as |peopleList peopleRequest|>
     <VehicleList as |vehicleList vehicleRequest|>
-        <ul>
-        <li>People: {{#if (or peopleRequest.isLoading vehicleRequest.isLoading) }}loading…{{else}} {{peopleList.results.length}}{{/if}}</li>
+      <ul>
+        <li>People: {{#if (or peopleRequest.isLoading vehicleRequest.isLoading) }}loading data…{{else}} {{peopleList.results.length}}{{/if}}</li>
       </ul>
 
       <ChartJs
