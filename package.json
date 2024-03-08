@@ -108,7 +108,6 @@
     "edition": "octane"
   },
   "dependencies": {
-    "ember-intl": "^6.5.1",
-    "ember-route-template": "^1.0.3"
+    "ember-intl": "^6.5.1"
   }
 }
