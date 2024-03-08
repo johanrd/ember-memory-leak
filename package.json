@@ -108,11 +108,7 @@
     "edition": "octane"
   },
   "dependencies": {
-    "@ember/render-modifiers": "^2.1.0",
-    "chart.js": "^4.4.2",
     "ember-intl": "^6.5.1",
-    "ember-resources": "^7.0.0",
-    "ember-route-template": "^1.0.3",
-    "reactiveweb": "^1.2.2"
+    "ember-route-template": "^1.0.3"
   }
 }
